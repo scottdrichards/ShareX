@@ -117,22 +117,26 @@ namespace ShareX.UploadersLib
 
         internal string SendRequest(HttpMethod method, string url, Dictionary<string, string> args = null, NameValueCollection headers = null, CookieCollection cookies = null)
         {
-            return SendRequest(method, url, (Stream)null, null, args, headers, cookies);
+            return "no";
+            //return SendRequest(method, url, (Stream)null, null, args, headers, cookies);
         }
 
         protected string SendRequest(HttpMethod method, string url, Stream data, string contentType = null, Dictionary<string, string> args = null, NameValueCollection headers = null,
             CookieCollection cookies = null)
         {
-            using (HttpWebResponse webResponse = GetResponse(method, url, data, contentType, args, headers, cookies))
-            {
-                return ProcessWebResponseText(webResponse);
-            }
+            return "no";
+
+            //using (HttpWebResponse webResponse = GetResponse(method, url, data, contentType, args, headers, cookies))
+            //{
+            //    return ProcessWebResponseText(webResponse);
+            //}
         }
 
         protected string SendRequest(HttpMethod method, string url, string content, string contentType = null, Dictionary<string, string> args = null, NameValueCollection headers = null,
             CookieCollection cookies = null)
         {
-            byte[] data = Encoding.UTF8.GetBytes(content);
+            return "no";
+            /*byte[] data = Encoding.UTF8.GetBytes(content);
 
             using (MemoryStream ms = new MemoryStream())
             {
@@ -140,18 +144,23 @@ namespace ShareX.UploadersLib
 
                 return SendRequest(method, url, ms, contentType, args, headers, cookies);
             }
+            */
         }
 
         internal string SendRequestURLEncoded(HttpMethod method, string url, Dictionary<string, string> args, NameValueCollection headers = null, CookieCollection cookies = null)
         {
+            return "no";
+            /*
             string query = URLHelpers.CreateQueryString(args);
 
-            return SendRequest(method, url, query, RequestHelpers.ContentTypeURLEncoded, null, headers, cookies);
+            return SendRequest(method, url, query, RequestHelpers.ContentTypeURLEncoded, null, headers, cookies);*/
         }
 
         protected bool SendRequestDownload(HttpMethod method, string url, Stream downloadStream, Dictionary<string, string> args = null,
             NameValueCollection headers = null, CookieCollection cookies = null, string contentType = null)
         {
+            return false;
+/*
             using (HttpWebResponse response = GetResponse(method, url, null, contentType, args, headers, cookies))
             {
                 if (response != null)
@@ -165,12 +174,13 @@ namespace ShareX.UploadersLib
                 }
             }
 
-            return false;
+            return false;*/
         }
 
         protected string SendRequestMultiPart(string url, Dictionary<string, string> args, NameValueCollection headers = null, CookieCollection cookies = null,
             HttpMethod method = HttpMethod.POST)
         {
+            return "no";/*
             string boundary = RequestHelpers.CreateBoundary();
             string contentType = RequestHelpers.ContentTypeMultipartFormData + "; boundary=" + boundary;
             byte[] data = RequestHelpers.MakeInputContent(boundary, args);
@@ -183,7 +193,7 @@ namespace ShareX.UploadersLib
                 {
                     return ProcessWebResponseText(webResponse);
                 }
-            }
+            }*/
         }
 
         protected UploadResult SendRequestFile(string url, Stream data, string fileName, string fileFormName, Dictionary<string, string> args = null,
@@ -194,7 +204,7 @@ namespace ShareX.UploadersLib
 
             IsUploading = true;
             StopUploadRequested = false;
-
+            /*
             try
             {
                 string boundary = RequestHelpers.CreateBoundary();
@@ -247,10 +257,11 @@ namespace ShareX.UploadersLib
                 }
             }
             finally
-            {
+            {*/
                 currentWebRequest = null;
                 IsUploading = false;
-            }
+            //}
+            result.Response = "no";
 
             return result;
         }
@@ -262,7 +273,7 @@ namespace ShareX.UploadersLib
 
             IsUploading = true;
             StopUploadRequested = false;
-
+            /*
             try
             {
                 url = URLHelpers.CreateQueryString(url, args);
@@ -315,10 +326,11 @@ namespace ShareX.UploadersLib
                 }
             }
             finally
-            {
+            {*/
                 currentWebRequest = null;
                 IsUploading = false;
-            }
+            //}
+            result.Response = "no";
 
             return result;
         }
@@ -328,7 +340,7 @@ namespace ShareX.UploadersLib
         {
             IsUploading = true;
             StopUploadRequested = false;
-
+            /*
             try
             {
                 url = URLHelpers.CreateQueryString(url, args);
@@ -369,10 +381,10 @@ namespace ShareX.UploadersLib
                 }
             }
             finally
-            {
+            {*/
                 currentWebRequest = null;
                 IsUploading = false;
-            }
+            //}
 
             return null;
         }
