@@ -393,6 +393,9 @@ namespace ShareX.UploadersLib
 
         protected bool TransferData(Stream dataStream, Stream requestStream, long dataPosition = 0, long dataLength = -1)
         {
+            return false;
+
+            /*
             if (dataPosition >= dataStream.Length)
             {
                 return true;
@@ -428,6 +431,7 @@ namespace ShareX.UploadersLib
             }
 
             return !StopUploadRequested;
+            */
         }
 
         private string ProcessError(Exception e, string requestURL)
@@ -509,7 +513,7 @@ namespace ShareX.UploadersLib
         {
             LastResponseInfo = null;
 
-            HttpWebRequest request = RequestHelpers.CreateWebRequest(method, url, headers, cookies, contentType, contentLength);
+            HttpWebRequest request = RequestHelpers.CreateWebRequest(method, null /* url */, headers, cookies, contentType, contentLength);
             currentWebRequest = request;
             return request;
         }
@@ -559,6 +563,7 @@ namespace ShareX.UploadersLib
         protected string GetAuthorizationURL(string requestTokenURL, string authorizeURL, OAuthInfo authInfo,
             Dictionary<string, string> customParameters = null, HttpMethod httpMethod = HttpMethod.GET)
         {
+            /*
             string url = OAuthManager.GenerateQuery(requestTokenURL, customParameters, httpMethod, authInfo);
 
             string response = SendRequest(httpMethod, url);
@@ -567,6 +572,8 @@ namespace ShareX.UploadersLib
             {
                 return OAuthManager.GetAuthorizationURL(response, authInfo, authorizeURL);
             }
+
+            */
 
             return null;
         }
@@ -578,6 +585,7 @@ namespace ShareX.UploadersLib
 
         protected NameValueCollection GetAccessTokenEx(string accessTokenURL, OAuthInfo authInfo, HttpMethod httpMethod = HttpMethod.GET)
         {
+            /*
             if (string.IsNullOrEmpty(authInfo.AuthToken) || string.IsNullOrEmpty(authInfo.AuthSecret))
             {
                 throw new Exception("Auth infos missing. Open Authorization URL first.");
@@ -591,6 +599,8 @@ namespace ShareX.UploadersLib
             {
                 return OAuthManager.ParseAccessTokenResponse(response, authInfo);
             }
+
+            */
 
             return null;
         }

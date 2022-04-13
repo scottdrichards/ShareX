@@ -243,7 +243,7 @@ namespace ShareX
         public bool PNGStripColorSpaceInformation { get; set; }
 
         [Category("Upload"), DefaultValue(false), Description("Can be used to disable uploading application wide.")]
-        public bool DisableUpload { get; set; }
+        public bool DisableUpload => true;
 
         [Category("Upload"), DefaultValue(false), Description("Accept invalid SSL certificates when uploading.")]
         public bool AcceptInvalidSSLCertificates { get; set; }
