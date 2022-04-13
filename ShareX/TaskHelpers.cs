@@ -1950,21 +1950,7 @@ namespace ShareX
 
         public static bool IsUploadAllowed()
         {
-            if (SystemOptions.DisableUpload)
-            {
-                MessageBox.Show(Resources.YourSystemAdminDisabledTheUploadFeature, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                return false;
-            }
-
-            if (Program.Settings.DisableUpload)
-            {
-                MessageBox.Show(Resources.ThisFeatureWillNotWorkWhenDisableUploadOptionIsEnabled, "ShareX", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                return false;
-            }
-
-            return true;
+            return false;
         }
     }
 }
